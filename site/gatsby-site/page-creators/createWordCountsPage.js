@@ -66,9 +66,26 @@ const createWordCountsPage = async (graphql, createPage) => {
     return b[1] - a[1];
   });
 
-  const numWordClouds = 8;
+  let numWordClouds = 1;
 
-  const wordsPerCloud = 80;
+  let wordsPerCloud = 1;
+
+  const maxNumWordClouds = 8;
+
+  const maxWordsPerCloud = 80;
+
+  // silly way to find a proper value for numWordClouds and wordsPerCloud
+  // in scenarios with small amounts of data
+  while (numWordClouds * wordsPerCloud < wordCountsSorted.length) {
+    if (wordsPerCloud < maxWordsPerCloud) {
+      wordsPerCloud++;
+    } else if (numWordClouds < maxNumWordClouds) {
+      if (wordsPerCloud * (numWordClouds + 1) > wordCountsSorted.length) break;
+      numWordClouds++;
+    } else {
+      break;
+    }
+  }
 
   let wordClouds = [];
 
