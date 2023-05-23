@@ -41,13 +41,16 @@ const LandingPage = (props) => {
 
   const { t } = useTranslation(['translation', 'landing']);
 
-  const title = t('Welcome to the Artificial Intelligence Incident Database', { ns: 'landing' });
+  const title = t('Welcome to the Deepfake Incident Database', { ns: 'landing' });
 
   const metaTitle = title;
 
-  const metaDescription = t('The starting point for information about the AI Incident Database', {
-    ns: 'landing',
-  });
+  const metaDescription = t(
+    'The starting point for information about the Deepfake Incident Database',
+    {
+      ns: 'landing',
+    }
+  );
 
   const metaImage = 'https://incidentdatabase.ai/logos/AIID_1000x1000px.png';
 

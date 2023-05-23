@@ -23,7 +23,7 @@ const config = {
     logo: '/logos/White_Transparent_AIID_short.png',
     logoMobile: '/White_Transparent_AIID.png',
     logoLink: '/',
-    title: ' AI Incident Database',
+    title: ' Deepfake Incident Database',
     githubUrl: 'https://github.com/responsible-ai-collaborative/aiid',
     facebookUrl: 'https://www.facebook.com/IncidentsDB',
     linkedInUrl: 'https://www.linkedin.com/company/responsible-ai-collaborative',
@@ -80,14 +80,19 @@ const config = {
   },
   sidebar: {
     navConfig: [
-      { title: 'Welcome to the AIID', label: 'welcome', url: '/', items: [] },
+      { title: 'Welcome to the DIID', label: 'welcome', url: '/', items: [] },
       { title: 'Discover Incidents', label: 'discover', url: '/apps/discover/', items: [] },
       { title: 'Spatial View', label: 'spatial', url: '/summaries/spatial/', items: [] },
       { title: 'Table View', label: 'incidents', url: '/apps/incidents/', items: [] },
       { title: 'Entities', label: 'entities', url: '/entities/', items: [] },
       { title: 'Taxonomies', label: 'taxonomies', url: '/taxonomies/', items: [] },
       { title: 'Word Counts', label: 'wordcounts', url: '/summaries/wordcounts/', items: [] },
-      { title: 'Submit Incident Reports', label: 'submit', url: '/apps/submit/', items: [] },
+      {
+        title: 'Submit Deepfake Incident Reports',
+        label: 'submit',
+        url: '/apps/submit/',
+        items: [],
+      },
       {
         title: 'Submission Leaderboard',
         label: 'leaderboard',
@@ -105,7 +110,7 @@ const config = {
         title: 'Research',
         items: [
           {
-            title: 'Defining an “AI Incident”',
+            title: 'Defining a “Deepfake Incident”',
             label: '1-criteria',
             url: '/research/1-criteria',
           },

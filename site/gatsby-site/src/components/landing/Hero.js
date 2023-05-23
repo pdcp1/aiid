@@ -23,7 +23,7 @@ export default function Hero() {
             tracking-tight leading-tight
           "
           >
-            AI Incident Database
+            Deepfake Incident Database
           </div>
         </Trans>
       </h1>
