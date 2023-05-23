@@ -1,12 +1,12 @@
-# Artificial Intelligence Incident Database (AIID)
+# Deepfake Incident Database (AIID)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9eb0dda2-916c-46f9-a0bd-9ddab3879c6e/deploy-status)](https://app.netlify.com/sites/aiid/deploys)
 
-Information about the goals and organization of the AI Incident Database can be found on the [production website](https://incidentdatabase.ai/). This page concentrates on onboarding for the following types of contributions to the database,
+Information about the goals and organization of the Deepfake Incident Database can be found on the [production website](https://incidentdatabase.ai/). This page concentrates on onboarding for the following types of contributions to the database,
 
-1. Contribute **changes** to the current AI Incident Database.
-2. Contribute a **new summary** to the AI Incident Database. A "summary" is a programmatically generated summary of the database contents. Examples are available [here](https://incidentdatabase.ai/summaries).
-3. Contribute a **new taxonomy** to the AI Incident Database. Details on taxonomies are available in the arXiv paper.
+1. Contribute **changes** to the current Deepfake Incident Database.
+2. Contribute a **new summary** to the Deepfake Incident Database. A "summary" is a programmatically generated summary of the database contents. Examples are available [here](https://incidentdatabase.ai/summaries).
+3. Contribute a **new taxonomy** to the Deepfake Incident Database. Details on taxonomies are available in the arXiv paper.
 4. Contribute a **new application** facilitating a new use case for the database. 
 
 ## Project Communications
@@ -31,7 +31,7 @@ Please make sure your code is well organized and commented before opening the pu
 
 ## AIID Engineering Process
 
-The AI Incident Database is an open source project inviting contributions from the global community. Anyone with code changes that advance the change thesis of making the world better in the future by remembering the negative outcomes of the past are welcome to submit pull requests. To ensure that submitted changes are likely to be accepted, we recommend becoming familiar with the manner in which we organize our work items and open an issue on GitHub.
+The Deepfake Incident Database is an open source project inviting contributions from the global community. Anyone with code changes that advance the change thesis of making the world better in the future by remembering the negative outcomes of the past are welcome to submit pull requests. To ensure that submitted changes are likely to be accepted, we recommend becoming familiar with the manner in which we organize our work items and open an issue on GitHub.
 
 The process of completing work through GitHub issues at the highest level is:
 Create Issue -> Assign Issue -> Review and Publish
@@ -133,15 +133,16 @@ npm install --global gatsby-cli
 Create a `.env` file under `site/gatsby-site` with the following contents:
 
 ```
-GATSBY_REALM_APP_ID=aiidstitch2-sasvc
-MONGODB_CONNECTION_STRING=mongodb+srv://readonly:vNMlVM35rsTlMUTr@aiiddev.seam4.mongodb.net
-MONGODB_TRANSLATIONS_CONNECTION_STRING=mongodb+srv://readonly:vNMlVM35rsTlMUTr@aiiddev.seam4.mongodb.net
-MONGODB_REPLICA_SET=aiiddev-shard-00-02.seam4.mongodb.net,aiiddev-shard-00-01.seam4.mongodb.net,aiiddev-shard-00-00.seam4.mongodb.net
+GATSBY_REALM_APP_ID=aiidstitch2-rxvyw
+MONGODB_CONNECTION_STRING=mongodb+srv://AdminUser:V79RJTgyFzx6shcf@aiiddev.6fq8g40.mongodb.net
+MONGODB_REPLICA_SET=aiiddev-shard-00-02.6fq8g40.mongodb.net,aiiddev-shard-00-01.6fq8g40.mongodb.net,aiiddev-shard-00-00.6fq8g40.mongodb.net
+MONGODB_TRANSLATIONS_CONNECTION_STRING=mongodb+srv://AdminUser:V79RJTgyFzx6shcf@aiiddev.6fq8g40.mongodb.net
 
 GATSBY_ALGOLIA_APP_ID=JD5JCVZEVS
 GATSBY_ALGOLIA_SEARCH_KEY=c5e99d93261645721a1765fe4414389c
+
 GATSBY_AVAILABLE_LANGUAGES=en,es,fr
-SKIP_PAGE_CREATOR=createTsneVisualizationPage
+
 ```
 
 This will give you access to our `staging` environment, so please be sure you are on the `staging` branch.
