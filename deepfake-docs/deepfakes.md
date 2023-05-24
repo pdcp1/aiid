@@ -15,7 +15,7 @@ This has been the development plan for our Deepfake Database's features, broken 
 Our project's requirements changed during the development process, and we delivered on the AIID team's most pressing needs over the course of the development process:
 
 * Integrate video storage and playback.
-* Collect a [seed datasest](https://drive.google.com/file/d/118pOK2x0fccbUUSqV5X5Mz9ynHfLlAyw/view?usp=sharing) of deepfake incidents.
+* Collect a [seed datasest](https://drive.google.com/file/d/1L3y0ObU-D0qfR8aVL4BNUBsiTGw-QKS8/view?usp=sharing) of deepfake incidents.
 * Create a Deepfake Incident Database website with these capabilities.
 
 However, there still remain some features that remain unrealized, and are in the next steps of this project. The **roadmap** for these is below, ordered by the priority of these features. We will offer assistance and contact with the AIID team in developing these.
