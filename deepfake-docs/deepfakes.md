@@ -28,15 +28,15 @@ However, there still remain some features that remain unrealized, and are in the
 
 ## Mock Front-End Designs
 
-![][https://github.com/ShaurGaur/aiid/blob/CodeFreeze/deepfake-docs/mock-discover.jpg?raw=true]
+![][https://raw.githubusercontent.com/ShaurGaur/aiid/CodeFreeze/deepfake-docs/mock-submission.jpg]
 
 This is the front-end mock design for the video URL feature in the submission form. We have successfully implemented this, and added a feature which retrieves the thumbnail of the provided video into a Cloudinary image store. This image can later be used as a fallback for the video in the event the deepfake video gets removed from the platform.
 
-![][https://github.com/ShaurGaur/aiid/blob/CodeFreeze/deepfake-docs/mock-incident.jpg?raw=true]
+![][https://raw.githubusercontent.com/ShaurGaur/aiid/CodeFreeze/deepfake-docs/mock-incident.jpg]
 
 This is the front-end mock design for the Video Player in the Incident page. We have implemented the video player card for this page, as well as a video player for each report.
 
-![][https://github.com/ShaurGaur/aiid/blob/CodeFreeze/deepfake-docs/mock-discover.jpg?raw=true]
+![][https://raw.githubusercontent.com/ShaurGaur/aiid/CodeFreeze/deepfake-docs/mock-discover.jpg]
 
 This is the front-end mock design for the Video Player in the Discover page. We have implemented the video player in the Details card of this page, and purposefully omitted it from the other views for format reasons. The tags in the bottom have not been developed yet due to a lack of a deepfake taxonomy at the moment.
 
