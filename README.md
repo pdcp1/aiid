@@ -1,8 +1,15 @@
-# Deepfake Incident Database (AIID)
+# Deepfake Incident Database (DFID)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9eb0dda2-916c-46f9-a0bd-9ddab3879c6e/deploy-status)](https://app.netlify.com/sites/aiid/deploys)
 
-Information about the goals and organization of the Deepfake Incident Database can be found on the [production website](https://incidentdatabase.ai/). This page concentrates on onboarding for the following types of contributions to the database,
+For **design**, **planning** and **roadmap** information for the Deepfake Incident Database, developed by the Oregon State University Capstone team in 2023, you can find information in [deepfake-docs/deepfakes.md](deepfake-docs/deepfakes.md). This document below will show information about:
+
+1. **Setup instructions** to install the codebase, and to be able to run and deploy the code.
+1. **Architecture** of the Deepfake Incident Database.
+1. **Contribution** process.
+1. **Unit testing** setup and process.
+
+Information about the goals and organization of the AI Incident Database (AIID), the parent website of the Deepfake Incident Database (DFID), can be found on the [production website](https://incidentdatabase.ai/). This page concentrates on onboarding for the following types of contributions to the database,
 
 1. Contribute **changes** to the current Deepfake Incident Database.
 2. Contribute a **new summary** to the Deepfake Incident Database. A "summary" is a programmatically generated summary of the database contents. Examples are available [here](https://incidentdatabase.ai/summaries).
@@ -29,7 +36,7 @@ The steps for contributing changes are the following,
 
 Please make sure your code is well organized and commented before opening the pull request.
 
-## AIID Engineering Process
+## DFID Engineering Process
 
 The Deepfake Incident Database is an open source project inviting contributions from the global community. Anyone with code changes that advance the change thesis of making the world better in the future by remembering the negative outcomes of the past are welcome to submit pull requests. To ensure that submitted changes are likely to be accepted, we recommend becoming familiar with the manner in which we organize our work items and open an issue on GitHub.
 
@@ -183,9 +190,9 @@ If the feature you are working on includes structural changes to the MongoDB dat
 - Create a new database user with admin access and another user with read-only permissions
 
 #### Replicating the Database
-Download the latest database backup from https://incidentdatabase.ai/research/snapshots.
+Download the latest database backup from [this link](https://drive.google.com/file/d/118pOK2x0fccbUUSqV5X5Mz9ynHfLlAyw/view).
 
-Extract the archive, then from the `mongodump` directory, run `mongorestore` (included in [MongoDB tools](https://www.mongodb.com/docs/database-tools/installation/installation)) using the admin user created in the step above to upload the database backup:
+Extract the archive, then from the `dump` directory, run `mongorestore` (included in [MongoDB tools](https://www.mongodb.com/docs/database-tools/installation/installation)) using the admin user created in the step above to upload the database backup:
 
 ```
 mongorestore mongodb+srv://<USER>:<PASSWORD>@aiiddev.<CLUSTER>.mongodb.net/aiidprod aiidprod
