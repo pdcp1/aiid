@@ -190,7 +190,7 @@ If the feature you are working on includes structural changes to the MongoDB dat
 - Create a new database user with admin access and another user with read-only permissions
 
 #### Replicating the Database
-Download the latest database backup from [this link](https://drive.google.com/file/d/118pOK2x0fccbUUSqV5X5Mz9ynHfLlAyw/view).
+Download the latest database backup from [this link](https://drive.google.com/file/d/1L3y0ObU-D0qfR8aVL4BNUBsiTGw-QKS8/view?usp=sharing).
 
 Extract the archive, then from the `dump` directory, run `mongorestore` (included in [MongoDB tools](https://www.mongodb.com/docs/database-tools/installation/installation)) using the admin user created in the step above to upload the database backup:
 
