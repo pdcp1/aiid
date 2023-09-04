@@ -26,7 +26,7 @@ jobs:
         run: mongorestore ${{ secrets.DB_STAGING_CONNECTION_STRING }}/translations ./dump/translations --drop --noOptionsRestore
 
       - name: "Restore Staging database collection: history"
-        run: mongorestore ${{ secrets.DB_STAGING_CONNECTION_STRING }}/translations ./dump/history --drop --noOptionsRestore
+        run: mongorestore ${{ secrets.DB_STAGING_CONNECTION_STRING }}/history ./dump/history --drop --noOptionsRestore
 
       - name: Trigger Staging Netlify build
         run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_STAGING_URL }}
