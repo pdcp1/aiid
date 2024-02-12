@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - staging
+  workflow_dispatch:
+    inputs:
+      force-deploy:
+        description: "Force deploy"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
 
@@ -13,6 +20,7 @@ jobs:
     with:
       sha: ${{ github.sha }}
       environment: staging
+      runner-label: ${{ vars.STAGING_RUNNER_LABEL }}
 
   call-test-build:
     uses: ./.github/workflows/test-build.yml
@@ -22,6 +30,7 @@ jobs:
       sha: ${{ github.sha }}
       environment: staging
       netlify-context: production
+      runner-label: ${{ vars.STAGING_RUNNER_LABEL }}
 
   call-test:
     uses: ./.github/workflows/test.yml
@@ -30,9 +39,11 @@ jobs:
     with:
       sha: ${{ github.sha }}
       environment: staging
+      runner-label: ${{ vars.STAGING_RUNNER_LABEL }}
 
   call-deploy:
     uses: ./.github/workflows/deploy.yml
+    if: ${{ github.event.inputs.force-deploy }}
     needs: call-test
     secrets: inherit
     permissions:
@@ -42,3 +53,4 @@ jobs:
       sha: ${{ github.sha }}
       netlify-context: production
       netlify-alias: 
+      runner-label: ${{ vars.STAGING_RUNNER_LABEL }}
