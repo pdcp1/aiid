@@ -256,16 +256,12 @@ exports.onPreBootstrap = async ({ reporter }) => {
   }
 
   if (process.env.CONTEXT === 'production') {
-    reporter.info('Step 1');
     const translationsActivity = reporter.activityTimer(`Translations`);
 
-    reporter.info('Step 2');
     translationsActivity.start();
 
-    reporter.info('Step 3');
     const configuredLanguages = getLanguages();
 
-    reporter.info('Step 4');
     const unavailableLanguages = differenceWith(
       config.i18n.availableLanguages,
       configuredLanguages,
@@ -274,25 +270,11 @@ exports.onPreBootstrap = async ({ reporter }) => {
       }
     );
 
-    reporter.info('Step 5');
-
     if (unavailableLanguages.length > 0) {
       throw `Language config error. Review your GATSBY_AVAILABLE_LANGUAGES variable. You've included a language that hasn't been configured yet: ${unavailableLanguages
         .map((l) => l)
         .join(', ')}`;
     }
-
-    reporter.info('Step 6');
-
-    reporter.info(
-      `config.mongodb.translationsConnectionString: "${config.mongodb.translationsConnectionString}"`
-    );
-    reporter.info(`config.i18n.translateApikey: "${config.i18n.translateApikey}"`);
-    reporter.info(`config.i18n.availableLanguages: "${config.i18n.availableLanguages}"`);
-    reporter.info(
-      `config.header.search.algoliaAdminKey: "${config.header.search.algoliaAdminKey}"`
-    );
-    reporter.info(`config.header.search.algoliaAppId: "${config.header.search.algoliaAppId}"`);
 
     if (
       config.mongodb.translationsConnectionString &&
@@ -301,49 +283,31 @@ exports.onPreBootstrap = async ({ reporter }) => {
       config.header.search.algoliaAdminKey &&
       config.header.search.algoliaAppId
     ) {
-      reporter.info('Step 7');
       if (process.env.TRANSLATE_DRY_RUN !== 'false') {
         reporter.warn(
           'Please set `TRANSLATE_DRY_RUN=false` to disble dry running of translation process.'
         );
       }
 
-      reporter.info('Step 7');
-
       translationsActivity.setStatus('Translating incident reports...');
-
-      reporter.info('Step 8');
 
       const translateClient = new Translate({ key: config.i18n.translateApikey });
 
-      reporter.info('Step 9');
-
       const mongoClient = new MongoClient(config.mongodb.translationsConnectionString);
-
-      reporter.info('Step 10');
 
       const languages = getLanguages();
 
-      reporter.info('Step 11');
-
       const translator = new Translator({ mongoClient, translateClient, languages, reporter });
-
-      reporter.info('Step 12');
 
       await translator.run();
 
-      reporter.info('Step 13');
-
       translationsActivity.setStatus('Updating incidents indexes...');
-
-      reporter.info('Step 14');
 
       const algoliaClient = algoliasearch(
         config.header.search.algoliaAppId,
         config.header.search.algoliaAdminKey
       );
 
-      reporter.info('Step 15');
       const algoliaUpdater = new AlgoliaUpdater({
         languages,
         mongoClient,
@@ -351,11 +315,8 @@ exports.onPreBootstrap = async ({ reporter }) => {
         reporter,
       });
 
-      reporter.info('Step 16');
-
       await algoliaUpdater.run();
     } else {
-      reporter.error('Step 6.1');
       throw `Missing environment variable, can't run translation process.`;
     }
 
