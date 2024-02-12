@@ -319,8 +319,6 @@ class AlgoliaUpdater {
   };
 
   uploadToAlgolia = async ({ language, entries }) => {
-    this.reporter.log(`---- step 1: uploadToAlgolia`);
-
     const indexName = `instant_search-${language}`;
 
     const featuredReplicaIndexName = indexName + '-featured';
@@ -339,11 +337,7 @@ class AlgoliaUpdater {
 
     const index = await this.algoliaClient.initIndex(indexName);
 
-    this.reporter.log(`---- step 2: uploadToAlgolia`);
-
     await index.replaceAllObjects(entries);
-
-    this.reporter.log(`---- step 3: uploadToAlgolia`);
 
     try {
       await index.setSettings(
@@ -370,91 +364,61 @@ class AlgoliaUpdater {
         }
       );
 
-      this.reporter.log(`---- step 4: uploadToAlgolia`);
-
       const featuredReplicaIndex = await this.algoliaClient.initIndex(featuredReplicaIndexName);
-
-      this.reporter.log(`---- step 5: uploadToAlgolia`);
 
       await featuredReplicaIndex.setSettings({
         ranking: ['desc(featured)', 'desc(text)'],
       });
 
-      this.reporter.log(`---- step 6: uploadToAlgolia`);
-
       const incidentDateDescReplicaIndex = await this.algoliaClient.initIndex(
         incidentDateDescReplicaIndexName
       );
-
-      this.reporter.log(`---- step 7: uploadToAlgolia`);
 
       await incidentDateDescReplicaIndex.setSettings({
         ranking: ['desc(epoch_incident_date)'],
       });
 
-      this.reporter.log(`---- step 8: uploadToAlgolia`);
-
       const incidentDateAscReplicaIndex = await this.algoliaClient.initIndex(
         incidentDateAscReplicaIndexName
       );
-
-      this.reporter.log(`---- step 9: uploadToAlgolia`);
 
       await incidentDateAscReplicaIndex.setSettings({
         ranking: ['asc(epoch_incident_date)'],
       });
 
-      this.reporter.log(`---- step 9: uploadToAlgolia`);
-
       const datePublishedDescReplicaIndex = await this.algoliaClient.initIndex(
         datePublishedDescReplicaIndexName
       );
-
-      this.reporter.log(`---- step 10: uploadToAlgolia`);
 
       await datePublishedDescReplicaIndex.setSettings({
         ranking: ['desc(epoch_date_published)'],
       });
 
-      this.reporter.log(`---- step 11: uploadToAlgolia`);
-
       const datePublishedAscReplicaIndex = await this.algoliaClient.initIndex(
         datePublishedAscReplicaIndexName
       );
-
-      this.reporter.log(`---- step 12: uploadToAlgolia`);
 
       await datePublishedAscReplicaIndex.setSettings({
         ranking: ['asc(epoch_date_published)'],
       });
 
-      this.reporter.log(`---- step 13: uploadToAlgolia`);
-
       const dateSubmittedDescReplicaIndex = await this.algoliaClient.initIndex(
         dateSubmittedDescReplicaIndexName
       );
-
-      this.reporter.log(`---- step 14: uploadToAlgolia`);
 
       await dateSubmittedDescReplicaIndex.setSettings({
         ranking: ['desc(epoch_date_submitted)'],
       });
 
-      this.reporter.log(`---- step 15: uploadToAlgolia`);
-
       const dateSubmittedAscReplicaIndex = await this.algoliaClient.initIndex(
         dateSubmittedAscReplicaIndexName
       );
 
-      this.reporter.log(`---- step 16: uploadToAlgolia`);
-
       await dateSubmittedAscReplicaIndex.setSettings({
         ranking: ['asc(epoch_date_submitted)'],
       });
-
-      this.reporter.log(`---- step 17: uploadToAlgolia`);
     } catch (e) {
-      this.reporter.log(`Error updating Algolia settings ${e.message}`);
+      this.reporter.error(`Error updating Algolia settings ${e.message}`);
       throw 'Error updating Algolia settings ' + e.message;
     }
   };
