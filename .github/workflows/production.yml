@@ -35,7 +35,6 @@ jobs:
 
   call-test:
     uses: ./.github/workflows/test.yml
-    if: ${{ github.event.inputs.force-deploy }}
     needs: call-test-build
     secrets: inherit
     with:
@@ -45,7 +44,7 @@ jobs:
 
   call-deploy:
     uses: ./.github/workflows/deploy.yml
-    if: ${{ github.event.inputs.force-deploy }}
+    if: github.event.inputs.force-deploy || success()
     needs: call-test
     secrets: inherit
     permissions:
