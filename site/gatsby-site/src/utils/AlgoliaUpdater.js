@@ -418,6 +418,7 @@ class AlgoliaUpdater {
         ranking: ['asc(epoch_date_submitted)'],
       });
     } catch (e) {
+      this.reporter.error(`Error updating Algolia settings ${e.message}`);
       throw 'Error updating Algolia settings ' + e.message;
     }
   };
@@ -469,6 +470,8 @@ class AlgoliaUpdater {
       );
 
       await this.uploadToAlgolia({ entries, language });
+
+      this.reporter.log(`Algolia index of [${language}] uploaded`);
 
       await this.deleteDuplicates({ language });
     }
