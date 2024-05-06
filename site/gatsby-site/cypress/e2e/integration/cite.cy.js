@@ -20,6 +20,8 @@ describe('Cite pages', () => {
 
   let user;
 
+  let lastIncidentId;
+
   before('before', function () {
     // Skip all tests if the environment is empty since /cite/{incident_id} is not available
     Cypress.env('isEmptyEnvironment') && this.skip();
@@ -32,10 +34,14 @@ describe('Cite pages', () => {
             first_name
             last_name
           }
+          incidents(limit: 1, sortBy: INCIDENT_ID_DESC) {
+            incident_id
+          }
         }
       `,
-    }).then(({ data: { user: userData } }) => {
+    }).then(({ data: { user: userData, incidents: incidentsData } }) => {
       user = userData;
+      lastIncidentId = incidentsData[0].incident_id;
     });
   });
 
@@ -323,12 +329,64 @@ describe('Cite pages', () => {
     cy.get(`.incident-ids-field [data-cy="token"]`).contains('10').should('be.visible');
   });
 
-  it('should render Next and Previous incident buttons', () => {
+  it('Should render Next and Previous incident buttons', () => {
     cy.visit(url);
 
     cy.contains('Next Incident').should('be.visible').should('have.attr', 'href', '/cite/11');
 
     cy.contains('Previous Incident').should('be.visible').should('have.attr', 'href', '/cite/9');
+  });
+
+  it('Should render the header next/previous buttons', () => {
+    cy.visit(url);
+    cy.get(`[data-cy="header-previous-incident-link"]`)
+      .should('be.visible')
+      .should('have.attr', 'href', '/cite/9');
+    cy.get(`[data-cy="header-next-incident-link"]`)
+      .should('be.visible')
+      .should('have.attr', 'href', '/cite/11');
+  });
+
+  it('Should disable Previous and Next incident buttons on first and last incidents', () => {
+    cy.visit('/cite/1');
+
+    cy.contains('Previous Incident').within(($button) => {
+      cy.wrap($button).should('be.visible');
+      cy.wrap($button).should('have.attr', 'disabled');
+      cy.wrap($button).should('not.have.attr', 'href');
+    });
+
+    cy.contains('Next Incident').should('be.visible').should('have.attr', 'href', '/cite/2');
+
+    cy.visit(`/cite/${lastIncidentId}`);
+
+    cy.contains('Previous Incident')
+      .should('be.visible')
+      .should('have.attr', 'href', `/cite/${lastIncidentId - 1}`);
+
+    cy.contains('Next Incident').within(($button) => {
+      cy.wrap($button).should('be.visible');
+      cy.wrap($button).should('have.attr', 'disabled');
+      cy.wrap($button).should('not.have.attr', 'href');
+    });
+  });
+
+  it('Should disable Previous and Next incident buttons in header on first and last incidents', () => {
+    cy.visit('/cite/1');
+
+    cy.get(`[data-cy="header-previous-incident-link"]`).should('not.exist');
+
+    cy.get(`[data-cy="header-next-incident-link"]`)
+      .should('be.visible')
+      .should('have.attr', 'href', '/cite/2');
+
+    cy.visit(`/cite/${lastIncidentId}`);
+
+    cy.get(`[data-cy="header-next-incident-link"]`).should('not.exist');
+
+    cy.get(`[data-cy="header-previous-incident-link"]`)
+      .should('be.visible')
+      .should('have.attr', 'href', `/cite/${lastIncidentId - 1}`);
   });
 
   maybeIt('Should show the edit incident form', () => {
