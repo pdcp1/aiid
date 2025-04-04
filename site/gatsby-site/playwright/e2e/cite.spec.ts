@@ -308,6 +308,9 @@ test.describe('Cite pages', () => {
             await expect(count).toBeGreaterThanOrEqual(0);
         }).toPass();
 
+        // expect the incident title to be localized
+        await expect(page.locator('[data-cy="similar-incident-card"]').first().locator('h3')).toHaveText('Título del Incidente 1');
+
         await expect(async () => {
             const similarIncidentLinks = await page.locator('.tw-main-container [data-cy="similar-incident-card"] > [data-cy="cite-link"]');
             const hrefs = await similarIncidentLinks.evaluateAll(links => links.map(link => link.href));
@@ -607,6 +610,6 @@ test.describe('Cite pages', () => {
         await page.goto('/es/cite/1');
 
         await expect(page.locator('[data-testid="incident-title"]')).toHaveText('Incidente 1: Título del Incidente 1');
-        await expect(page.getByText('Descripción: Descripción del incidente 1')).toBeVisible();
+        await expect(page.locator('[data-testid="incident-description"]')).toHaveText('Descripción del incidente 1');
     });
 });
