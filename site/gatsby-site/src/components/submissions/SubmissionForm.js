@@ -417,6 +417,7 @@ const SubmissionForm = ({ onChange = null, promoType = null }) => {
                 {...TextInputGroupProps}
               />
               <TagsInputGroup
+                data-cy="developers-input"
                 name="developers"
                 label={t('Alleged developer of AI system')}
                 icon={faCode}
@@ -427,6 +428,7 @@ const SubmissionForm = ({ onChange = null, promoType = null }) => {
               />
 
               <TagsInputGroup
+                data-cy="deployers-input"
                 name="deployers"
                 label={t('Alleged deployer of AI system')}
                 icon={faHandPointRight}
@@ -437,6 +439,7 @@ const SubmissionForm = ({ onChange = null, promoType = null }) => {
               />
 
               <TagsInputGroup
+                data-cy="harmed_parties-input"
                 name="harmed_parties"
                 label={t('Alleged harmed or nearly harmed parties')}
                 icon={faBolt}
@@ -447,6 +450,7 @@ const SubmissionForm = ({ onChange = null, promoType = null }) => {
               />
 
               <TagsInputGroup
+                data-cy="implicated_systems-input"
                 name="implicated_systems"
                 label={t('Alleged implicated AI systems')}
                 icon={faGear}
