@@ -42,12 +42,12 @@ jobs:
   call-deploy:
     if: (inputs.force-deploy == true || success()) && !cancelled()
     uses: ./.github/workflows/deploy.yml
-    # needs: 
-    #   [
-    #     cache-modifier,
-    #     call-test-api,
-    #     call-test-playwright-e2e,
-    #   ]
+    needs: 
+      [
+        cache-modifier,
+        call-test-api,
+        call-test-playwright-e2e,
+      ]
     secrets: inherit
     permissions:
       pull-requests: write
