@@ -5,6 +5,7 @@ import { fill } from '@cloudinary/base/actions/resize';
 import ReportText from 'components/reports/ReportText';
 import WebArchiveLink from 'components/ui/WebArchiveLink';
 import { Trans, useTranslation } from 'react-i18next';
+import { useUserContext } from 'contexts/UserContext';
 import { Tooltip, Badge } from 'flowbite-react';
 import Markdown from 'react-markdown';
 import Actions from 'components/discover/Actions';
@@ -29,6 +30,8 @@ const ReportCard = ({
   item.incident_id = incidentId || item.incident_id;
 
   const { t } = useTranslation();
+
+  const { isRole } = useUserContext();
 
   const [internalExpanded, setInternalExpanded] = useState(alwaysExpanded);
 
@@ -203,7 +206,14 @@ const ReportCard = ({
           </div>
         </div>
         <div className="cursor-default">
-          <ReportText text={item.text} maxChars={expanded ? null : 240} />
+          <ReportText
+            text={item.text}
+            maxUiChars={expanded ? null : 240}
+            maxQuotationChars={
+              isRole('incident_editor') || isRole('admin') ? undefined : item.snippet_max_characters
+            }
+            continueLink={item.url}
+          />
           {expanded && hasVariantData(item) && (
             <div className="flex w-full flex-col my-4 gap-2">
               <div className="font-bold flex items-center gap-2">
